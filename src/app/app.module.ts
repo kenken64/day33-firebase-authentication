@@ -53,6 +53,7 @@ import {
 
 import {PlatformModule} from '@angular/cdk/platform';
 import {ObserversModule} from '@angular/cdk/observers';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -101,7 +102,8 @@ import {ObserversModule} from '@angular/cdk/observers';
     MatFileUploadModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
-    AngularFireMessagingModule
+    AngularFireMessagingModule,
+    ReactiveFormsModule
   ],
   providers: [ AngularFirestore ],
   bootstrap: [AppComponent]
