@@ -1,7 +1,19 @@
 <button (click)="saveDelivery()">Save Delivery</button>
 <button (click)="getAllDelivery()">Get All Deliveries</button>
 <br>
-{{deliveriesArr | json}}
+<mat-card *ngFor="let delivery of deliveriesArr" class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Delivery Driver</mat-card-title>
+      
+    </mat-card-header>
+    <img mat-card-image src="{{delivery.driverPhoto}}" alt="Photo">
+    <mat-card-content>
+      <p>
+        {{delivery.driver_name}}
+      </p>
+    </mat-card-content>
+  </mat-card>
 <!--
 <br>
 <label for="singleFile">Upload file</label>
