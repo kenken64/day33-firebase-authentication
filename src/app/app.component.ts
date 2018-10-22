@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material';
 export class AppComponent {
   title = 'day26-angular-firebase';
   deliveriesArr : Delivery[];
-  uploadAPI = environment.uploadUrl;
+  uploadAPI: string = environment.uploadUrl;
   currentUploadURL: string;
 
   uploadForm = new FormGroup({

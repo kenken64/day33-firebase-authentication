@@ -10,7 +10,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { environment } from '../environments/environment';
 
-import { MatFileUploadModule } from 'angular-material-fileupload';
+import { MatFileUploadModule } from './matfileUpload/matFileUpload.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {

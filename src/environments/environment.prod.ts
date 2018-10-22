@@ -7,5 +7,6 @@ export const environment = {
     projectId: "day26-38142",
     storageBucket: "day26-38142.appspot.com",
     messagingSenderId: "342114766842"
-  }
+  },
+  uploadUrl: "http://localhost:3000/api/upload"
 };
