@@ -7,7 +7,7 @@
       <mat-card-title>Delivery Driver</mat-card-title>
       
     </mat-card-header>
-    <img mat-card-image src="{{delivery.driverPhoto}}" alt="Photo">
+    <img *ngFor="let photo of delivery.driverPhoto" mat-card-image src="{{photo}}" alt="Photo">
     <mat-card-content>
       <p>
         {{delivery.driver_name}}

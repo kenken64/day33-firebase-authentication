@@ -12,6 +12,7 @@ import { environment } from '../environments/environment';
 
 import { MatFileUploadModule } from './matfileUpload/matFileUpload.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import {
   MatAutocompleteModule,
@@ -104,6 +105,7 @@ import { FileValidator } from './directive/file-input.validator';
     ObserversModule,
     PlatformModule,
     MatFileUploadModule,
+    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
     AngularFireMessagingModule,

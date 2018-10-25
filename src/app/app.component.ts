@@ -21,6 +21,7 @@ export class AppComponent implements OnInit{
   mode = 'indeterminate';
   value = 50;
   spinnerFlag: boolean = false;
+  multipleFilesUpload = [];
   
   uploadForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
@@ -42,7 +43,7 @@ export class AppComponent implements OnInit{
         driver_name:  fullName,
         vehicle_type: "Truck",
         area: "North",
-        driverPhoto: this.currentUploadURL
+        driverPhoto: this.multipleFilesUpload
     }
     this.svc.saveDelivery(d).subscribe((result)=>{
       console.log("snack time !");
@@ -63,13 +64,12 @@ export class AppComponent implements OnInit{
     let evtObj = {... evt.event};
     console.log(">>>" + evtObj);
     this.spinnerFlag = true;
-    //this.uploadForm.disable();
     if(typeof(evtObj.body) !== 'undefined'){
       if(typeof(evtObj.body.filename) !== 'undefined'){
         console.log(evtObj.body.filename);
         this.currentUploadURL = evtObj.body.filename;
+        this.multipleFilesUpload.push(this.currentUploadURL);
         this.spinnerFlag = false;
-        //this.uploadForm.enable();
       }
     }
     
