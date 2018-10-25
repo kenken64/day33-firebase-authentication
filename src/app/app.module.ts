@@ -54,10 +54,14 @@ import {
 import {PlatformModule} from '@angular/cdk/platform';
 import {ObserversModule} from '@angular/cdk/observers';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FileValueAccessor } from './directive/file-control-value-accessor';
+import { FileValidator } from './directive/file-input.validator';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FileValueAccessor,
+    FileValidator
   ],
   imports: [
     BrowserModule,
