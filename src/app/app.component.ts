@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DeliveryService } from './services/delivery.service';
+import { AuthService } from './services/auth.service';
 import  { Delivery } from './model/delivery';
 import { environment } from '../environments/environment';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
-//import { FileValidator } from './directive/file-input.validator';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase/app';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +14,8 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
+  PASSWORD_PATTERN = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{12,}$/;
+  loginForm :FormGroup;
   title = 'day26-angular-firebase';
   deliveriesArr : Delivery[];
   uploadAPI: string = environment.uploadUrl;
@@ -28,8 +32,50 @@ export class AppComponent implements OnInit{
     lastName: new FormControl('', Validators.required),
   });
 
-  constructor(private svc: DeliveryService, private snackBar: MatSnackBar){
-    
+  constructor(private svc: DeliveryService, 
+    private snackBar: MatSnackBar,
+    private fb: FormBuilder,
+    public afAuth: AngularFireAuth,
+    private authService: AuthService){
+    this.loginForm = fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.pattern(this.PASSWORD_PATTERN)]],
+    })
+  }
+
+  loginGoogle(){
+    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+  }
+
+  loginFacebook(){
+    this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider());
+  }
+
+  loginGithub(){
+    this.afAuth.auth.signInWithPopup(new auth.GithubAuthProvider());
+  }
+
+  loginWithEmail(){
+    const formValue = this.loginForm.value;
+    this.authService.loginWithEmail(formValue.email, formValue.password)
+          .subscribe(
+              (result) => {
+                console.log(result);
+                
+                this.authService.setFirebaseTokenToLocalstorage();
+                
+                setTimeout(function() {
+                    //this.spinnerService.hide();
+                    //this.router.navigate(['']);
+                    console.log("delay ...");
+                  }.bind(this), 4500);
+                
+              }
+          )
+  }
+
+  logout(){
+    this.afAuth.auth.signOut().then(result=>this.authService.destroyToken());
   }
 
   ngOnInit(){}

@@ -1,3 +1,28 @@
+<br><br>
+<div class="container">
+<div *ngIf="afAuth.user | async as user; else showLogin">
+  <h1>Hello {{ user.displayName }}!</h1>
+  <button (click)="logout()">Logout</button>
+</div>
+<br>
+<ng-template #showLogin>
+<p>Please login.</p>
+  <form class="example-form" [formGroup]="loginForm">
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="email" formControlName="email">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+          <input matInput type="password" placeholder="password" formControlName="password">
+      </mat-form-field>
+    </form>      
+
+<button mat-button color="primary" (click)="loginGoogle()"><i class="fab fa-google-plus fa-3x"></i>&nbsp;Login with Google</button>
+<button mat-button color="primary" (click)="loginFacebook()"><i class="fab fa-facebook fa-3x"></i>&nbsp;Login with Facebook</button>
+<button mat-button color="primary" (click)="loginGithub()"><i class="fab fa-github fa-3x"></i>&nbsp;Login with Github</button>
+<button mat-button color="primary" (click)="loginWithEmail()"><i class="fas fa-at fa-3x"></i>&nbsp;Login with Email</button>
+</ng-template>
+
+<br><br>
 <button (click)="saveDelivery()">Save Delivery</button>
 <button (click)="getAllDelivery()">Get All Deliveries</button>
 <br>
@@ -44,3 +69,4 @@
     <button (click)="saveDelivery()" mat-raised-button color="primary" [disabled]="!uploadForm.valid">Save</button>
 
 </form>
+</div>

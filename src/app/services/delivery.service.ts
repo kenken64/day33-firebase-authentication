@@ -12,18 +12,7 @@ export class DeliveryService {
   private deliveryCollection: AngularFirestoreCollection<Delivery>;
   
   constructor(private db: AngularFirestore, private http: HttpClient) { 
-    //this.deliveryCollection = db
-           // .collection<Delivery>('delivery', ref => ref.orderBy('driver_name', 'asc'));
   }
-
-  /*
-  saveDelivery(delivery) {
-    return of(this.deliveryCollection.add(delivery));
-  }
-
-  getAllDeliveries(): Observable<Delivery[]>{
-    return this.deliveryCollection.valueChanges();
-  }*/
 
   saveDelivery(delivery){
 

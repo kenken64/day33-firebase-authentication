@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 
 // firebase dependencies 
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
@@ -109,6 +111,7 @@ import { FileValidator } from './directive/file-input.validator';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
     AngularFireMessagingModule,
+    AngularFireAuthModule,
     ReactiveFormsModule
   ],
   providers: [ AngularFirestore ],
